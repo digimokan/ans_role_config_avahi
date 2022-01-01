@@ -15,6 +15,6 @@
   become_user: root
   notify:
     - set_avahi_config_changed
-    - restart_freebsd_avahi_daemon
-    - restart_freebsd_avahi_dnsconfd
+    - restart_avahi_daemon
+    - restart_avahi_dnsconfd
 

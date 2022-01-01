@@ -9,21 +9,13 @@
     state: restarted
   become: true
   become_user: root
-  listen: restart_linux_avahi_daemon
+  listen: restart_avahi_daemon
 
-- name: "Restart FreeBSD avahi_daemon service"
+- name: "Restart FreeBSD avahi-dnsconfd service"
   ansible.builtin.service:
-    name: avahi_daemon
+    name: avahi-dnsconfd
     state: restarted
   become: true
   become_user: root
-  listen: restart_freebsd_avahi_daemon
-
-- name: "Restart FreeBSD avahi_dnsconfd service"
-  ansible.builtin.service:
-    name: avahi_dnsconfd
-    state: restarted
-  become: true
-  become_user: root
-  listen: restart_freebsd_avahi_dnsconfd
+  listen: restart_avahi_dnsconfd
 

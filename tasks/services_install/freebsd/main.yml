@@ -8,8 +8,8 @@
   become_user: root
   notify:
     - set_avahi_config_changed
-    - restart_freebsd_avahi_daemon
-    - restart_freebsd_avahi_dnsconfd
+    - restart_avahi_daemon
+    - restart_avahi_dnsconfd
 
 - name: "Install the 'nss_mdns' hostname resolution package"
   ansible.builtin.package:
@@ -19,13 +19,13 @@
   become_user: root
   notify:
     - set_avahi_config_changed
-    - restart_freebsd_avahi_daemon
-    - restart_freebsd_avahi_dnsconfd
+    - restart_avahi_daemon
+    - restart_avahi_dnsconfd
   when: enable_host_discovery_service
 
-- name: "Ensure 'avahi_daemon' service is started, and enable it to start at boot"
+- name: "Ensure 'avahi-daemon' service is started, and enable it to start at boot"
   ansible.builtin.service:
-    name: avahi_daemon
+    name: avahi-daemon
     state: started
     enabled: yes
   become: true

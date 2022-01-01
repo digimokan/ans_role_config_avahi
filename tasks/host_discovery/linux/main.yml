@@ -13,5 +13,5 @@
   become_user: root
   notify:
     - set_avahi_config_changed
-    - restart_linux_avahi_daemon
+    - restart_avahi_daemon
 
