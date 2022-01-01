@@ -14,7 +14,9 @@
     state: present
   become: true
   become_user: root
-  notify: set_avahi_config_changed
+  notify:
+    - set_avahi_config_changed
+    - restart_linux_avahi_daemon
 
 - name: "Install the 'nss-mdns' hostname resolution package"
   # see https://wiki.archlinux.org/title/CUPS#Network
@@ -24,7 +26,9 @@
     extra_args: "--asdeps"
   become: true
   become_user: root
-  notify: set_avahi_config_changed
+  notify:
+    - set_avahi_config_changed
+    - restart_linux_avahi_daemon
   when: enable_host_discovery_service
 
 - name: "Ensure 'avahi-daemon' service is started, and enable it to start at boot"

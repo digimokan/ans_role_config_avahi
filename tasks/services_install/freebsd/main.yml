@@ -1,0 +1,44 @@
+# See https://loga.us/2020/09/02/avahi-in-freebsd/
+
+- name: "Install the 'avahi-app' service-discovery package"
+  ansible.builtin.package:
+    name: avahi-app
+    state: present
+  become: true
+  become_user: root
+  notify:
+    - set_avahi_config_changed
+    - restart_freebsd_avahi_daemon
+    - restart_freebsd_avahi_dnsconfd
+
+- name: "Install the 'nss_mdns' hostname resolution package"
+  ansible.builtin.package:
+    name: nss_mdns
+    state: present
+  become: true
+  become_user: root
+  notify:
+    - set_avahi_config_changed
+    - restart_freebsd_avahi_daemon
+    - restart_freebsd_avahi_dnsconfd
+  when: enable_host_discovery_service
+
+- name: "Ensure 'avahi_daemon' service is started, and enable it to start at boot"
+  ansible.builtin.service:
+    name: avahi_daemon
+    state: started
+    enabled: yes
+  become: true
+  become_user: root
+  notify: set_avahi_config_changed
+
+- name: "Ensure 'avahi_dnsconfd' service is started, and enable it to start at boot"
+  ansible.builtin.service:
+    name: avahi_dnsconfd
+    state: started
+    enabled: yes
+  become: true
+  become_user: root
+  notify: set_avahi_config_changed
+  when: enable_host_discovery_service
+

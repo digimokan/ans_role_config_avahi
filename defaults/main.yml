@@ -1,3 +1,6 @@
 # enable optional hostname-discovery service
 enable_host_discovery_service: true
 
+# absolute path to system nsswitch.conf config file
+nsswitch_conf_path: '/etc/nsswitch.conf'
+

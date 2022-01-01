@@ -1,5 +1,29 @@
-- name: "Set 'avahi_config_changed' to true, since role altered avahi config"
+- name: "Set 'avahi_config_changed' to true, to 'export' changed avahi config"
   ansible.builtin.set_fact:
     avahi_config_changed: true
   listen: set_avahi_config_changed
+
+- name: "Restart Linux avahi-daemon service"
+  ansible.builtin.service:
+    name: avahi-daemon
+    state: restarted
+  become: true
+  become_user: root
+  listen: restart_linux_avahi_daemon
+
+- name: "Restart FreeBSD avahi_daemon service"
+  ansible.builtin.service:
+    name: avahi_daemon
+    state: restarted
+  become: true
+  become_user: root
+  listen: restart_freebsd_avahi_daemon
+
+- name: "Restart FreeBSD avahi_dnsconfd service"
+  ansible.builtin.service:
+    name: avahi_dnsconfd
+    state: restarted
+  become: true
+  become_user: root
+  listen: restart_freebsd_avahi_dnsconfd
 
