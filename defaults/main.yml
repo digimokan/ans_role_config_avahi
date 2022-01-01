@@ -1,0 +1,3 @@
+# enable optional hostname-discovery service
+enable_host_discovery_service: true
+
