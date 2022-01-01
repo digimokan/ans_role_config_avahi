@@ -1,0 +1,5 @@
+- name: "Set 'avahi_config_changed' to true, since role altered avahi config"
+  ansible.builtin.set_fact:
+    avahi_config_changed: true
+  listen: set_avahi_config_changed
+

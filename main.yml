@@ -1,0 +1,14 @@
+- name: "Initialize 'avahi_config_changed' to false, to track role actions"
+  ansible.builtin.set_fact:
+    avahi_config_changed: false
+
+- name: "Install avahi service discovery and utilities"
+  ansible.builtin.include_tasks: services_install/main.yml
+
+- name: "Configure avahi for host discovery service"
+  ansible.builtin.include_tasks: host_discovery/main.yml
+  when: enable_host_discovery_service
+
+- name: "Flush handlers to ensure avahi_config_changed is set as required"
+  ansible.builtin.meta: flush_handlers
+
