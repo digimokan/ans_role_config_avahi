@@ -11,6 +11,7 @@ Configure the Avahi service/host discovery service.
 * [Supported Operating Systems](#supported-operating-systems)
 * [Quick Start](#quick-start)
     * [Use From Parent Role As Dependency](#use-from-parent-role-as-dependency)
+* [Role Options](#role-options)
 * [Contributing](#contributing)
 
 ## Purpose
@@ -33,6 +34,12 @@ Configure the Avahi service/host discovery service.
    ```yaml
    - src: https://github.com/digimokan/ans_role_config_avahi
    ```
+
+## Role Options
+
+See the role `defaults` file, for overridable vars:
+
+  * [defaults/main.yml](../defaults/main.yml)
 
 ## Contributing
 
