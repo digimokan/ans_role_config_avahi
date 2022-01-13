@@ -23,6 +23,18 @@
     - restart_avahi_dnsconfd
   when: enable_host_discovery_service
 
+- name: "Ensure 'dbus' service is started, and enable it to start at boot"
+  ansible.builtin.service:
+    name: dbus
+    state: started
+    enabled: yes
+  become: true
+  become_user: root
+  notify:
+    - set_avahi_config_changed
+    - restart_avahi_daemon
+    - restart_avahi_dnsconfd
+
 - name: "Ensure 'avahi-daemon' service is started, and enable it to start at boot"
   ansible.builtin.service:
     name: avahi-daemon
