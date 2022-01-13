@@ -3,7 +3,7 @@
     avahi_config_changed: true
   listen: set_avahi_config_changed
 
-- name: "Restart Linux avahi-daemon service"
+- name: "Restart avahi-daemon service"
   ansible.builtin.service:
     name: avahi-daemon
     state: restarted
@@ -11,7 +11,7 @@
   become_user: root
   listen: restart_avahi_daemon
 
-- name: "Restart FreeBSD avahi-dnsconfd service"
+- name: "Restart avahi-dnsconfd service"
   ansible.builtin.service:
     name: avahi-dnsconfd
     state: restarted
