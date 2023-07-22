@@ -1,8 +1,8 @@
-- name: "Configure host discovery service, for a Linux system"
-  ansible.builtin.include_tasks: linux/main.yml
-  when: ansible_system == "Linux"
+- name: "Install and configure host-discovery for Arch Linux"
+  ansible.builtin.include_tasks: archlinux/main.yml
+  when: ansible_os_family == "Archlinux"
 
-- name: "Configure host discovery service, for a FreeBSD system"
+- name: "Install and configure host-discovery for FreeBSD"
   ansible.builtin.include_tasks: freebsd/main.yml
   when: ansible_os_family == "FreeBSD"
 

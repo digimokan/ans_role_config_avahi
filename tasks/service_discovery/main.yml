@@ -1,8 +1,8 @@
-- name: "Install avahi service discovery and utilities for Arch Linux"
+- name: "Install and configure service-discovery for Arch Linux"
   ansible.builtin.include_tasks: archlinux/main.yml
   when: ansible_os_family == "Archlinux"
 
-- name: "Install avahi service discovery and utilities for FreeBSD"
+- name: "Install and configure service-discovery for FreeBSD"
   ansible.builtin.include_tasks: freebsd/main.yml
   when: ansible_os_family == "FreeBSD"
 

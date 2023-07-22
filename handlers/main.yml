@@ -1,15 +1,12 @@
-- name: "Set 'avahi_config_changed' to true, to 'export' changed avahi config"
-  ansible.builtin.set_fact:
-    avahi_config_changed: true
-  listen: set_avahi_config_changed
-
 - name: "Restart avahi-daemon service"
   ansible.builtin.service:
     name: avahi-daemon
     state: restarted
   become: true
   become_user: root
-  listen: restart_avahi_daemon
+  listen: "{{ handler_to_restart_avahi_services }}"
+  when: (ansible_os_family == "Archlinux") or
+        (ansible_os_family == "FreeBSD")
 
 - name: "Restart avahi-dnsconfd service"
   ansible.builtin.service:
@@ -17,5 +14,15 @@
     state: restarted
   become: true
   become_user: root
-  listen: restart_avahi_dnsconfd
+  listen: "{{ handler_to_restart_avahi_services }}"
+  when: (ansible_os_family == "FreeBSD")
+
+- name: "Restart dbus service"
+  ansible.builtin.service:
+    name: dbus
+    state: restarted
+  become: true
+  become_user: root
+  listen: "{{ handler_to_restart_avahi_services }}"
+  when: (ansible_os_family == "FreeBSD")
 

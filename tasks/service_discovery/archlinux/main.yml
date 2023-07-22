@@ -6,30 +6,16 @@
     enabled: no
   become: true
   become_user: root
+  notify: "{{ handler_to_restart_avahi_services }}"
 
 - name: "Install the 'avahi' service-discovery package"
   # see https://wiki.archlinux.org/title/CUPS#Network
-  community.general.pacman:
+  ansible.builtin.package:
     name: avahi
     state: present
   become: true
   become_user: root
-  notify:
-    - set_avahi_config_changed
-    - restart_avahi_daemon
-
-- name: "Install the 'nss-mdns' hostname resolution package"
-  # see https://wiki.archlinux.org/title/CUPS#Network
-  community.general.pacman:
-    name: nss-mdns
-    state: present
-    extra_args: "--asdeps"
-  become: true
-  become_user: root
-  notify:
-    - set_avahi_config_changed
-    - restart_avahi_daemon
-  when: enable_host_discovery_service
+  notify: "{{ handler_to_restart_avahi_services }}"
 
 - name: "Ensure 'avahi-daemon' service is started, and enable it to start at boot"
   # see https://wiki.archlinux.org/title/CUPS#Network
@@ -39,5 +25,5 @@
     enabled: yes
   become: true
   become_user: root
-  notify: set_avahi_config_changed
+  notify: "{{ handler_to_restart_avahi_services }}"
 

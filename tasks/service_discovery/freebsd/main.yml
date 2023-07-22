@@ -1,0 +1,28 @@
+# See https://loga.us/2020/09/02/avahi-in-freebsd/
+
+- name: "Install the 'avahi-app' service-discovery package"
+  ansible.builtin.package:
+    name: avahi-app
+    state: present
+  become: true
+  become_user: root
+  notify: "{{ handler_to_restart_avahi_services }}"
+
+- name: "Ensure 'dbus' service is started, and enable it to start at boot"
+  ansible.builtin.service:
+    name: dbus
+    state: started
+    enabled: yes
+  become: true
+  become_user: root
+  notify: "{{ handler_to_restart_avahi_services }}"
+
+- name: "Ensure 'avahi-daemon' service is started, and enable it to start at boot"
+  ansible.builtin.service:
+    name: avahi-daemon
+    state: started
+    enabled: yes
+  become: true
+  become_user: root
+  notify: "{{ handler_to_restart_avahi_services }}"
+
