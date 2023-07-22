@@ -41,6 +41,7 @@ Configure the Avahi service/host discovery service.
    - name: "Install and configure Avahi"
      ansible.builtin.include_role:
        name: ans_role_config_avahi
+       public: yes
      vars:
        enable_host_discovery_service: true
    ```
@@ -49,7 +50,7 @@ Configure the Avahi service/host discovery service.
 
 See the role `defaults` file, for overridable vars:
 
-  * [defaults/main.yml](../defaults/main.yml)
+* [defaults/main/](../defaults/main/)
 
 ## Contributing
 
