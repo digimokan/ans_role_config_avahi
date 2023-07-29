@@ -1,18 +1,18 @@
+- name: "Install the 'avahi' service-discovery package"
+  # see https://wiki.archlinux.org/title/CUPS#Network
+  ansible.builtin.package:
+    name: avahi
+    state: present
+  become: true
+  become_user: root
+  notify: "{{ handler_to_restart_avahi_services }}"
+
 - name: "Disable systemd-resolved service, as it conflicts with avahi resolver"
   # see https://wiki.archlinux.org/title/Avahi#Installation
   ansible.builtin.service:
     name: systemd-resolved
     state: stopped
     enabled: no
-  become: true
-  become_user: root
-  notify: "{{ handler_to_restart_avahi_services }}"
-
-- name: "Install the 'avahi' service-discovery package"
-  # see https://wiki.archlinux.org/title/CUPS#Network
-  ansible.builtin.package:
-    name: avahi
-    state: present
   become: true
   become_user: root
   notify: "{{ handler_to_restart_avahi_services }}"
