@@ -4,7 +4,7 @@
     state: restarted
   become: true
   become_user: root
-  listen: "{{ handler_to_restart_avahi_services }}"
+  listen: "restart_avahi_services"
   when: (ansible_os_family == "Archlinux") or
         (ansible_os_family == "FreeBSD")
 
@@ -14,7 +14,7 @@
     state: restarted
   become: true
   become_user: root
-  listen: "{{ handler_to_restart_avahi_services }}"
+  listen: "restart_avahi_services"
   when: (ansible_os_family == "FreeBSD")
 
 - name: "Restart dbus service"
@@ -23,6 +23,6 @@
     state: restarted
   become: true
   become_user: root
-  listen: "{{ handler_to_restart_avahi_services }}"
+  listen: "restart_avahi_services"
   when: (ansible_os_family == "FreeBSD")
 
