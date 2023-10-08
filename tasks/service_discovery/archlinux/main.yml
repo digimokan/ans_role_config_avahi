@@ -12,7 +12,7 @@
   ansible.builtin.service:
     name: systemd-resolved
     state: stopped
-    enabled: no
+    enabled: false
   become: true
   become_user: root
   notify: "{{ handler_to_restart_avahi_services }}"
@@ -22,7 +22,7 @@
   ansible.builtin.service:
     name: avahi-daemon
     state: started
-    enabled: yes
+    enabled: true
   become: true
   become_user: root
   notify: "{{ handler_to_restart_avahi_services }}"

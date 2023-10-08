@@ -12,7 +12,7 @@
   ansible.builtin.service:
     name: avahi-dnsconfd
     state: started
-    enabled: yes
+    enabled: true
   become: true
   become_user: root
   notify: "{{ handler_to_restart_avahi_services }}"
@@ -25,9 +25,9 @@
     line: >-
       hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4
     state: present
-    create: no
-    backrefs: yes
-    backup: yes
+    create: false
+    backrefs: true
+    backup: true
   become: true
   become_user: root
   notify: "{{ handler_to_restart_avahi_services }}"

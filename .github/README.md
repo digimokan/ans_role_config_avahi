@@ -41,7 +41,7 @@ Configure the Avahi service/host discovery service.
    - name: "Install and configure Avahi"
      ansible.builtin.include_role:
        name: ans_role_config_avahi
-       public: yes
+       public: true
      vars:
        enable_host_discovery_service: true
    ```

@@ -17,8 +17,8 @@
     line: >-
       hosts: \1 mdns_minimal [NOTFOUND=return] \2
     state: present
-    backrefs: yes
-    backup: yes
+    backrefs: true
+    backup: true
   become: true
   become_user: root
   notify: "{{ handler_to_restart_avahi_services }}"
