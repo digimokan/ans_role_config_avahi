@@ -5,7 +5,7 @@
     state: present
   become: true
   become_user: root
-  notify: "{{ handler_to_restart_avahi_services }}"
+  notify: "{{ avahi_handler_to_restart_avahi_services }}"
 
 - name: "Disable systemd-resolved service, as it conflicts with avahi resolver"
   # see https://wiki.archlinux.org/title/Avahi#Installation
@@ -15,7 +15,7 @@
     enabled: false
   become: true
   become_user: root
-  notify: "{{ handler_to_restart_avahi_services }}"
+  notify: "{{ avahi_handler_to_restart_avahi_services }}"
 
 - name: "Ensure 'avahi-daemon' service is started, and enable it to start at boot"
   # see https://wiki.archlinux.org/title/CUPS#Network
@@ -25,5 +25,5 @@
     enabled: true
   become: true
   become_user: root
-  notify: "{{ handler_to_restart_avahi_services }}"
+  notify: "{{ avahi_handler_to_restart_avahi_services }}"
 

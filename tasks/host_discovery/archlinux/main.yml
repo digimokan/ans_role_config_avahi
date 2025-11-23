@@ -6,7 +6,7 @@
     extra_args: "--asdeps"
   become: true
   become_user: root
-  notify: "{{ handler_to_restart_avahi_services }}"
+  notify: "{{ avahi_handler_to_restart_avahi_services }}"
 
 - name: "In '{{ nsswitch_conf_path }}', make nss-mdns authoritative for avahi's .local domain"
   # see https://wiki.archlinux.org/title/Avahi#Hostname_resolution
@@ -21,5 +21,5 @@
     backup: true
   become: true
   become_user: root
-  notify: "{{ handler_to_restart_avahi_services }}"
+  notify: "{{ avahi_handler_to_restart_avahi_services }}"
 

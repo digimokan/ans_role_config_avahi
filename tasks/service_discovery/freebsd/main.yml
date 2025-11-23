@@ -6,7 +6,7 @@
     state: present
   become: true
   become_user: root
-  notify: "{{ handler_to_restart_avahi_services }}"
+  notify: "{{ avahi_handler_to_restart_avahi_services }}"
 
 - name: "Ensure 'dbus' service is started, and enable it to start at boot"
   ansible.builtin.service:
@@ -15,7 +15,7 @@
     enabled: true
   become: true
   become_user: root
-  notify: "{{ handler_to_restart_avahi_services }}"
+  notify: "{{ avahi_handler_to_restart_avahi_services }}"
 
 - name: "Ensure 'avahi-daemon' service is started, and enable it to start at boot"
   ansible.builtin.service:
@@ -24,5 +24,5 @@
     enabled: true
   become: true
   become_user: root
-  notify: "{{ handler_to_restart_avahi_services }}"
+  notify: "{{ avahi_handler_to_restart_avahi_services }}"
 

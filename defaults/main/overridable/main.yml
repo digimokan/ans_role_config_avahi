@@ -1,5 +1,5 @@
 # enable optional hostname-discovery service
-enable_host_discovery_service: false
+avahi_enable_host_discovery_service: false
 
 # absolute path to system nsswitch.conf config file
 nsswitch_conf_path: '/etc/nsswitch.conf'

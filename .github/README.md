@@ -43,14 +43,18 @@ Configure the Avahi service/host discovery service.
        name: ans_role_config_avahi
        public: true
      vars:
-       enable_host_discovery_service: true
+       avahi_enable_host_discovery_service: true
    ```
 
 ## Role Options
 
-See the role `defaults` file, for overridable vars:
+Vars with default values, which can be overridden in the playbook:
 
-* [defaults/main/](../defaults/main/)
+  * [overridable](../defaults/main/overridable/main.yml)
+
+Vars defined by this role, exported with `public: true`, for use in other roles:
+
+  * [export](../defaults/main/export/main.yml)
 
 ## Contributing
 

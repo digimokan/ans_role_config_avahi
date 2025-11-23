@@ -1,3 +1,3 @@
 # when this role is public, other roles can notify this avahi-restart handler
-handler_to_restart_avahi_services: "restart_avahi_services"
+avahi_handler_to_restart_avahi_services: "restart_avahi_services"
 

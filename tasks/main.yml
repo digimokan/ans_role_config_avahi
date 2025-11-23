@@ -3,5 +3,5 @@
 
 - name: "Install and configure Avahi host-discovery"
   ansible.builtin.include_tasks: host_discovery/main.yml
-  when: enable_host_discovery_service
+  when: avahi_enable_host_discovery_service
 
